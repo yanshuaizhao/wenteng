@@ -1,0 +1,147 @@
+
+.clearfix {
+	*zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+	display: table; 
+	line-height: 0;
+	content: "";
+}
+.clearfix:after {
+	clear: both;
+}
+/*======= 表单 =======*/
+.login-box{
+	position: absolute;
+	z-index: 9;
+    width: 435px;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -205px;
+	padding-top: 45px;
+    border: 1px solid #666;
+    background: #373737;
+	border-radius: 2px;
+	box-shadow: 10px 10px 5px #000;
+	color: #fff;
+}
+.login-box form{
+	position: relative;
+}
+.form-inline{
+	position: relative;
+	display: block;
+}
+.form-inline + .form-inline{
+	margin-top: 10px;
+}
+.form-inline > div{
+	height: 40px;
+	line-height: 40px;
+}
+.form-inline-font{
+	position: absolute;
+	left: 0;
+	width: 110px;
+	padding-right: 10px;
+	font-family: "Arial";
+	font-size: 15px;
+	text-align: right;
+}
+.form-inline-input{
+
+}
+.form-inline-input input,
+.code-box{
+	
+    width: 300px;
+    height: 40px;
+    color: #fff;
+        background: rgba(0, 0, 0, 0.16);
+    border: 0;
+    border-radius: 5px;
+	outline: none;
+	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.06);
+}
+.code-box{
+	position: relative;
+	background:#f9f9f9;
+	height: 22px;
+	width: 186px;
+}
+.code-box p,
+.code-box span{
+	display:block;
+	position: absolute;
+	left: 0;
+	height: 20px;
+	text-align: center;
+	line-height: 20px;
+	border-radius: 5px;
+	color:#e5e8ee;
+
+}
+.code-box span{
+	width: 38px;
+	background-color:#f1f1f1;
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 20px;
+	cursor: pointer;
+	border:1px solid #ebebeb;
+	color:#000;
+}
+.code-box p{
+	width: 0;
+	background-color: #FFFF99;
+	overflow: hidden;
+	text-indent: -20px;
+	transition: background 1s ease-in;
+}
+.code-box .code-input{
+	display: none;
+}
+.login-btn{
+	padding-right: 25px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	text-align: right;
+	font-size: 0;
+}
+.user-btn-link{
+	display: inline-block;
+	vertical-align: sub;
+	padding-right: 10px;
+}
+.user-btn-link a{
+	color: #fff;
+	font-size: 13px;
+}
+.user-btn-link a + a{
+	margin-left: 5px;
+}
+.user-btn-link a:hover{
+	
+}
+.login-btn button{
+	border: none;
+	padding: 8px 12px;
+	background-color:#00a1d2;
+	border-radius: 3px;
+	font-size: 14px;
+	color:#fff;
+	cursor: pointer;
+}
+.login-btn button:hover{
+	box-shadow: 0 0 3px #00a1d2;
+	
+}
+.form-inline-input b{
+	position: absolute;
+	padding-left: 70px;
+	font-weight: normal;
+	top:2px;
+	color:#b3b6bc;
+}

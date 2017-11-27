@@ -11,14 +11,17 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::group(['namespace' => 'Home'],function ($router) {
+    $router->get('/', 'IndexController@index');
 });
 
+
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+//Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
 {
     $router->get('login', 'LoginController@loginPage')->name('admin.login');
