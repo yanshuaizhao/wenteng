@@ -1,4 +1,4 @@
-@extends('admin.layouts.base')
+@extends('home.layouts.base')
 @section('title', '文腾翻译')
 
 @section('content')
