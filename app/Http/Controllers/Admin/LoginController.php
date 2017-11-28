@@ -30,7 +30,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/admin/index';
-    protected $username;
+    protected $username = 'name';
 
     /**
      * Create a new controller instance.
@@ -40,7 +40,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:admin', ['except' => 'logout']);
-        $this->username = config('admin.global.username');
+        $this->username = 'name';//config('admin.global.username');
     }
 
     /**
@@ -59,4 +59,7 @@ class LoginController extends Controller
         return auth()->guard('admin');
     }
 
+    protected function username(){
+        return 'name';
+    }
 }

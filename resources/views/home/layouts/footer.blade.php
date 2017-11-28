@@ -3,47 +3,15 @@
         <div class="leftwords">
             <div class="footernav">
                 <ul>
-                    <li>
-                        <a href="#">咨询中心</a>
-                    </li>
-                    <li><span>|</span></li>
-                    <li>
-                        <a href="#">付款方式</a>
-                    </li>
-                    <li><span>|</span></li>
-                    <li>
-                        <a href="#">保密协议</a>
-                    </li>
-                    <li><span>|</span></li>
-                    <li>
-                        <a href="#">字数统计</a>
-                    </li>
-                    <li>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="#">网站地图</a>
-                    </li>
-                    <li>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="#">常见问题</a>
-                    </li>
-                    <li>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="#">支付方式</a>
-                    </li>
-                    <li>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="#">合作客户</a>
-                    </li>
+                    @foreach($footerNav[0] as $k=>$v)
+                        @if($k!=0)
+                        <li><span>|</span></li>
+                        @endif
+                        <li><a href="{{$v['link']}}">{{$v['title']}}</a></li>
+                    @endforeach
                 </ul>
             </div>
+            
             <div class="address">
                 <p>客户热线：400-658-2018　 010-57189898   010-57189696</p>
                 <p>邮箱：winteng@126.com</p>
