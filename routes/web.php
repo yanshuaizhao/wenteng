@@ -17,6 +17,10 @@
 
 Route::group(['namespace' => 'Home'],function ($router) {
     $router->get('/', 'IndexController@index');
+    $router->get('/sertype/kouyi.html', 'SerTypeController@kouyi');
+    $router->get('/sertype/kouyi_more.html', 'SerTypeController@kouyiMore');
+    $router->get('/sertype/biyi.html', 'SerTypeController@biyi');
+    $router->get('/sertype/tingyi.html', 'SerTypeController@tingyi');
 });
 
 

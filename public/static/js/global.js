@@ -60,7 +60,7 @@ $('.userbox ul li.fx2 .h2tit a').click(function(){
 })
 
 
-$('body').append("<div id='btn_top'><img src='images/return.png'></div>")
+$('body').append("<div id='btn_top'><img src='/static/images/return.png'></div>")
 
 
 

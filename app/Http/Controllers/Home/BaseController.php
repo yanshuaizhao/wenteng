@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class BaseController extends Controller
 {
+    const PAGE_HOME_ID   = 1;
+    const PAGE_BIYI_ID   = 2; //笔译
+    const PAGE_TINGYI_ID = 3; //听译
+    const PAGE_KOUYIMORE_ID = 4; //口译了解更多
+
     public $tplData = [];
     public function __construct()
     {

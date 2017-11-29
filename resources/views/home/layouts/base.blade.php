@@ -19,13 +19,13 @@
 
 @include('home.layouts.header')
 
-<div class="banner">
-    <img src="/static/images/1.jpg" alt="" />
-</div>
+@yield('banner')
 
 @yield('content')
 
 @include('home.layouts.footer')
+
+@yield('js')
 
 <script>
     $(document).ready(function(){
