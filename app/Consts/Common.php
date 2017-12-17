@@ -21,6 +21,13 @@ class Common
         self::ARTICLE_TYPE_TINGYI => '听译服务',
     ];
 
+    const NAV_TYPE_TOP = 1;
+    const NAV_TYPE_FOOTER = 2;
+    const NAV_TYPE = [
+        self::NAV_TYPE_TOP      => '头部导航',
+        self::NAV_TYPE_FOOTER   => '底部导航',
+    ];
+
 
     const IMG_ARTICLE_UPLOAD = '/uploads/article/';
     const IMG_LANG_UPLOAD    = '/uploads/lang/';

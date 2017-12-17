@@ -60,27 +60,27 @@
 						<span class="s1">
 							确认需求
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s1">
 							预付定金
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s2">
 							文本听译
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s2">
 							字幕制作
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s2">
 							母语配音
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s1">
 							视频合成
 						</span>
-						<img src="images/right.png" alt="">
+						<img src="/static/images/right.png" alt="">
 						<span class="s1">
 							支付尾款
 						</span>
@@ -307,52 +307,52 @@
 				<ul>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li class="noright">
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li>
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 					<li class="noright">
 						<a href="#">
-							<img src="images/co1.png" alt="" />
+							<img src="/static/images/co1.png" alt="" />
 						</a>
 					</li>
 				</ul>

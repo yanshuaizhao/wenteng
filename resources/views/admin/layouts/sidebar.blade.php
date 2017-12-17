@@ -31,7 +31,6 @@
                 </ul>
             </li>
 
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-th"></i>
@@ -43,6 +42,30 @@
                 <ul class="treeview-menu">
                     <li><a href="#"><i class="fa fa-circle-o"></i> 用户列表</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> 订单列表</a></li>
+                </ul>
+            </li>
+
+
+
+            <li class="treeview @if( in_array(mb_substr(Request::path(), 0, 10), ['admin/conf', 'admin/nav/'])) active @endif">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>站点设置</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::path()=='admin/conf/index') class="active" @endif>
+                        <a href="/admin/conf/index">
+                            <i class="fa fa-circle-o"></i> 公共配置
+                        </a>
+                    </li>
+                    <li @if(Request::path()=='admin/nav/index') class="active" @endif>
+                        <a href="/admin/nav/index">
+                            <i class="fa fa-circle-o"></i> 菜单管理
+                        </a>
+                    </li>
                 </ul>
             </li>
 

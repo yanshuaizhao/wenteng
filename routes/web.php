@@ -75,16 +75,26 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
     $router->post('adm_permissions/index', 'AdmPermissionsController@index');
     $router->resource('adm_permissions', 'AdmPermissionsController');
 
-
     // 翻译语种
     $router->get('lang/index', 'LangController@index');
     $router->post('lang/index', 'LangController@index');
     $router->resource('lang', 'LangController');
 
-
     // 文章内容管理
     $router->get('article/index', 'ArticleController@index');
     $router->post('article/index', 'ArticleController@index');
     $router->resource('article', 'ArticleController');
+
+    // 配置管理
+    $router->get('conf/index', 'ConfController@index');
+    $router->post('conf/index', 'ConfController@index');
+    $router->resource('conf', 'ConfController');
+
+    // 前台导航
+    $router->get('nav/index', 'NavController@index');
+    $router->post('nav/index', 'NavController@index');
+    $router->resource('nav', 'NavController');
+
+
 
 });

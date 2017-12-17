@@ -7,6 +7,7 @@
  */
 
 namespace App\Http\Service;
+use App\Consts\Common;
 use \App\Models\Article;
 use App\Models\Lang;
 
@@ -32,6 +33,9 @@ class LangService
     {
         $list = Lang::where('status', '=',Lang::STATUS_SHOW)->get();
         $list = $list ? $list->toArray() : [];
+        foreach ($list as $k=>$v){
+            $list[$k]['img'] = Common::IMG_LANG_UPLOAD.$v['img'];
+        }
         return $list;
     }
 
