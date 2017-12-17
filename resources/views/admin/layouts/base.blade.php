@@ -291,6 +291,7 @@
 <!-- jQuery 3 -->
 <script src="/adm/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/adm/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="/adm/plugins/jquery.form.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
     $.widget.bridge('uibutton', $.ui.button);

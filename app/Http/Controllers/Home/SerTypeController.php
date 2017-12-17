@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Consts\Common;
 use App\Http\Service\ArticleService;
 use Illuminate\Http\Request;
 
@@ -33,10 +34,9 @@ class SerTypeController extends BaseController
     public function biyi()
     {
         // 获取内容
-        $this->tplData['pageInfo'] = ArticleService::connect()->getArticleById(self::PAGE_BIYI_ID);
+        $this->tplData['list'] = ArticleService::connect()->getList(Common::ARTICLE_TYPE_BIYI);
         return view('home.sertype.biyi', $this->tplData);
     }
-
 
     /**
      * 听译
@@ -44,8 +44,21 @@ class SerTypeController extends BaseController
     public function tingyi()
     {
         // 获取内容
-        $this->tplData['pageInfo'] = ArticleService::connect()->getArticleById(self::PAGE_TINGYI_ID);
+        $this->tplData['list'] = ArticleService::connect()->getList(Common::ARTICLE_TYPE_TINGYI);
         return view('home.sertype.tingyi', $this->tplData);
     }
+
+    /**
+     * 详情
+     * @param $id int
+     * @return string
+     */
+    public function detail($id)
+    {
+        // 获取内容
+        $this->tplData['articleInfo'] = ArticleService::connect()->getArticleById($id);
+        return view('home.sertype.detail', $this->tplData);
+    }
+
 
 }

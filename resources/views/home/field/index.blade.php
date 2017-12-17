@@ -1,5 +1,5 @@
 @extends('home.layouts.base')
-@section('title', '文腾翻译-服务类型-笔译')
+@section('title', '文腾翻译-翻译领域')
 
 @section('banner')
 	<div class="banner">
@@ -13,15 +13,14 @@
 	<div class="main">
 		<div class="section_2">
 			<h2 class="titlemodel wow  ">
-				笔译服务
-
+				专业领域
 			</h2>
 			<div class="desc2 wow  ">
-				文档翻译是文腾翻译的优势服务项目。凭着精细化的服务流程，我们做出了行业顶级的质量。近三年“博鳌亚洲论坛年会”的全部文稿翻译工作全都由文腾翻译承担，文腾翻译文字翻译的质量获得了委托方的高度评价。另外，我们与清华大学出版社在内的各大出版社长期合作，翻译专著书籍近百本，这都是文腾翻译在文档翻译方面深厚实力的体现。
+				文腾翻译旗下囊括了多个专业领域的翻译人才。我们会根据各领域的特性，定制独特的翻译流程，配备相关专业译者，确保翻译的高品质和高效率。目前文腾翻译的翻译项目涉及到以下八大领域
 			</div>
 			<div class="list">
-				<ul class="listmodel1">
-					@foreach($list as $k=>$v)
+				<ul class="listmodel2">
+					@foreach($fieldList as $k=>$v)
 					<li class="li{{$k+1}} wow">
 						<div class="bigbox">
 							<a class="box">

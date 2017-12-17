@@ -17,6 +17,21 @@
                 </ul>
             </li>
 
+            <li class="treeview @if( in_array(Request::path(), ['admin/lang/index', 'admin/article/index'])) active @endif">
+                <a href="#">
+                    <i class="fa fa-th"></i>
+                    <span>内容管理</span>
+                    <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::path()=='admin/lang/index') class="active" @endif><a href="/admin/lang/index"><i class="fa fa-circle-o"></i> 翻译语种</a></li>
+                    <li @if(Request::path()=='admin/article/index') class="active" @endif><a href="/admin/article/index"><i class="fa fa-circle-o"></i> 文章管理</a></li>
+                </ul>
+            </li>
+
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-th"></i>

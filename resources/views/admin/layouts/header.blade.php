@@ -1,7 +1,7 @@
 <header class="main-header">
     <a href="index2.html" class="logo">
-        <span class="logo-mini">CMS</span>
-        <span class="logo-lg"><b>Admin</b>CMS</span>
+        <span class="logo-mini">WT</span>
+        <span class="logo-lg"><b>文腾翻译</b>后台系统管理</span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
