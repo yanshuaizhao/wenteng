@@ -31,7 +31,7 @@
                 </ul>
             </li>
 
-            <li class="treeview">
+            <li class="treeview @if( in_array(Request::path(), ['admin/translator/index'])) active @endif">
                 <a href="#">
                     <i class="fa fa-th"></i>
                     <span>用户管理</span>
@@ -40,6 +40,7 @@
                         </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li @if(Request::path()=='admin/translator/index') class="active" @endif><a href="/admin/translator/index"><i class="fa fa-circle-o"></i> 译者列表</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> 用户列表</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> 订单列表</a></li>
                 </ul>

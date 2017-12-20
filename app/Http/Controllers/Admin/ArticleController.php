@@ -65,14 +65,37 @@ class ArticleController extends Controller
 
     public function store()
     {
+        $file = Input::file('img');
+        // 文件是否上传成功
+        $filename = '';
+        if ($file->isValid()) {
+            // 获取文件相关信息
+            $originalName = $file->getClientOriginalName(); // 文件原名
+            $ext = $file->getClientOriginalExtension();     // 扩展名
+            $realPath = $file->getRealPath();   //临时文件的绝对路径
+            $type = $file->getClientMimeType();     // image/jpeg
+
+            $imgType = ['image/jpg', 'image/jpeg', 'image/pjpeg'];
+            if(!in_array($type, $imgType)) {
+                return redirect('')->withErrors("图片格式不正确!");
+            }
+
+            // 上传文件
+            $filename = uniqid() . '.' . $ext;
+            $file_dir  = 'article/'.$filename;
+            // 使用我们新建的uploads本地存储空间（目录）
+            //这里的uploads是配置文件的名称
+            $img_res = Storage::disk('uploads')->put($file_dir, file_get_contents($realPath));
+            if(empty($img_res)) $filename = '';
+        }
+
         $desc = Input::get('desc', '');
-        $img = Input::get('img', '');
         $content = Input::get('content','');
         $user = new Article();
         $user->type  = Input::get('type');
         $user->title = Input::get('title');
         $user->desc  = $desc ? $desc : '';
-        $user->img   = $img ? $img : '';
+        $user->img   = $filename;
         $user->content = $content ? $content : '';
 
         if(!is_numeric($user->type)){
@@ -134,7 +157,7 @@ class ArticleController extends Controller
             // 使用我们新建的uploads本地存储空间（目录）
             //这里的uploads是配置文件的名称
             $img_res = Storage::disk('uploads')->put($file_dir, file_get_contents($realPath));
-            if(empty($img_res)) $img_res = '';
+            if(empty($img_res)) $filename = '';
         }
 
         $user = Article::find( (int)$id );

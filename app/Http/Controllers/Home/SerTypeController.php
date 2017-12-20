@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Consts\Common;
 use App\Http\Service\ArticleService;
+use App\Models\Translator;
 use Illuminate\Http\Request;
 
 class SerTypeController extends BaseController
@@ -14,6 +15,26 @@ class SerTypeController extends BaseController
      */
     public function kouyi()
     {
+        // 获取服务地点
+        $this->tplData['zoneList'] = Common::TRANSLATOR_ZONE;
+
+        // 服务领域
+        $this->tplData['fieldList'] = Common::TRANSLATOR_FIELD;
+
+        // 类别
+        $this->tplData['kouyiTypeList'] = Common::KOUYI_TYPE;
+
+        // 语言
+        $this->tplData['langList'] = Common::TRANSLATOR_LANG;
+
+        // 价格
+        $this->tplData['priceList'] = Common::TRANSLATOR_PRICE;
+
+        // 获取译者列表
+        $list = Translator::where('status', 1)->get();
+
+        $this->lists = $list ? $list->toArray() : [];
+
         // 获取内容
         return view('home.sertype.kouyi', $this->tplData);
     }

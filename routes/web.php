@@ -95,6 +95,9 @@ Route::group(['prefix' => 'admin','namespace' => 'Admin'],function ($router)
     $router->post('nav/index', 'NavController@index');
     $router->resource('nav', 'NavController');
 
-
+    // 译者列表
+    $router->get('translator/index', 'TranslatorController@index');
+    $router->post('translator/index', 'TranslatorController@index');
+    $router->resource('translator', 'TranslatorController');
 
 });

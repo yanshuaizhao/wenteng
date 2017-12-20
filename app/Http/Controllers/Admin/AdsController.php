@@ -3,24 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Consts\Common;
-use App\Http\Requests\AdminUsersCreateRequest;
-use App\Http\Requests\AdminUsersUpdateRequest;
-use App\Models\AdminUsers;
-use App\Models\Lang;
+use App\Models\Ads;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 
-class LangController extends Controller
+class AdsController extends Controller
 {
-    protected $fields = [
-        'name'  => '',
-        'email' => ''
-    ];
-
     /**
-     * 翻译语种
+     * 内容管理
      * @param $request
      * @return mixed
      */
@@ -33,37 +25,42 @@ class LangController extends Controller
             $order = $request->get('order');
             $columns = $request->get('columns');
             $search = $request->get('search');
-            $data['recordsTotal'] = Lang::count();
+            $data['recordsTotal'] = Ads::count();
             if (strlen($search['value']) > 0) {
-                $data['recordsFiltered'] = Lang::where(function ($query) use ($search) {
+                $data['recordsFiltered'] = Ads::where(function ($query) use ($search) {
                     $query->where('title', 'LIKE', '%' . $search['value'] . '%');
                 })->count();
-                $data['data'] = Lang::where(function ($query) use ($search) {
+                $data['data'] = Ads::where(function ($query) use ($search) {
                     $query->where('title', 'LIKE', '%' . $search['value'] . '%');
                 })->skip($start)->take($length)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             } else {
 
-                $data['recordsFiltered'] = Lang::count();
-                $data['data'] = Lang::skip($start)->take($length)
+                $data['recordsFiltered'] = Ads::count();
+                $data['data'] = Ads::skip($start)->take($length)
                     ->orderBy($columns[$order[0]['column']]['data'], $order[0]['dir'])
                     ->get();
             }
 
+            foreach ($data['data'] as $k=>$v) {
+                $data['data'][$k]['type_name'] = isset(Common::AD_TYPE[$v['type']]) ? Common::AD_TYPE[$v['type']] : '';
+                $data['data'][$k]['ctime_date'] = date('Y-m-d H:i', $v['ctime']);
+                //$data['data'][$k]['utime_date'] = date('Y-m-d H:i', $v['utime']);
+            }
             return response()->json($data);
         }
 
-        return view('admin.lang.index');
+        return view('admin.ads.index');
     }
 
 
     /**
-     * 账号添加页面
+     * 添加页面
      */
     public function create()
     {
-        return view('admin.lang.create');
+        return view('admin.ads.create', ['adType'=>Common::AD_TYPE, 'showStatus'=>Common::SHOW_STATUS]);
     }
 
     public function store()
@@ -85,42 +82,51 @@ class LangController extends Controller
 
             // 上传文件
             $filename = uniqid() . '.' . $ext;
-            $file_dir  = 'lang/'.$filename;
+            $file_dir  = 'banner/'.$filename;
             // 使用我们新建的uploads本地存储空间（目录）
             //这里的uploads是配置文件的名称
             $img_res = Storage::disk('uploads')->put($file_dir, file_get_contents($realPath));
             if(empty($img_res)) $filename = '';
         }
 
-        $user = new Lang();
-        $user->title = Input::get('title');
-        $user->code  = Input::get('code');
-        $user->desc  = Input::get('desc');
-        $user->img   = $filename;
-        $user->content = Input::get('content');
-        $user->money   = Input::get('money');
-        $user->save();
+        $obj = new Ads();
+        $obj->type  = Input::get('type');
+        $obj->title = Input::get('title');
+        $obj->introduction = Input::get('introduction');
+        $obj->url = Input::get('url');
+        $obj->img   = $filename;
+        $obj->orderby = intval(Input::get('orderby', 0));
+        $obj->status = intval(Input::get('status', 1));
+
+        if(!is_numeric($obj->type)){
+            return redirect()->back()->withErrors("请选择Banner类型");
+        }
+        if(empty($obj->title)){
+            return redirect()->back()->withErrors("标题不能为空");
+        }
+
+        $obj->save();
         //event(new \App\Events\userActionEvent('\App\Models\Admin\AdminUser', $user->id, 1, '添加了用户' . $user->name));
 
-        return redirect('/admin/lang/index')->withSuccess('添加成功！');
+        return redirect('/admin/ads/index')->withSuccess('添加成功！');
     }
 
     /**
-     * 账号修改
+     * 修改操作
      */
     public function edit($id)
     {
-        $user = Lang::find( (int) $id);
-        if (!$user) return redirect('/admin/lang/index')->withErrors("找不到该记录!");
+        $user = Ads::find( (int) $id);
+        if (!$user) return redirect('/admin/ads/index')->withErrors("找不到该记录!");
         $keyList = array_keys($user->toArray());
         foreach ($keyList as $field) {
             $data[$field] = old($field, $user->$field);
         }
         $data['id'] = (int)$id;
-        $data['img'] = $data['img'] ? Common::IMG_LANG_UPLOAD.$data['img'] : '';
+        $data['img'] = $data['img'] ? Common::IMG_ADS_UPLOAD.$data['img'] : '';
         //event(new \App\Events\userActionEvent('\App\Models\Admin\AdminUser', $user->id, 3, '编辑了记录' . $user->name));
 
-        return view('admin.lang.edit', ['editData'=>$data]);
+        return view('admin.ads.edit', ['editData'=>$data , 'adType'=>Common::AD_TYPE, 'showStatus'=>Common::SHOW_STATUS]);
     }
 
     /**
@@ -147,24 +153,23 @@ class LangController extends Controller
 
             // 上传文件
             $filename = uniqid() . '.' . $ext;
-            $file_dir  = 'lang/'.$filename;
+            $file_dir  = 'banner/'.$filename;
             // 使用我们新建的uploads本地存储空间（目录）
             //这里的uploads是配置文件的名称
             $img_res = Storage::disk('uploads')->put($file_dir, file_get_contents($realPath));
             if(empty($img_res)) $filename = '';
         }
 
-        $langObj = Lang::find((int)$id);
-        foreach (array_keys($langObj->toArray()) as $field) {
-            if(Input::get($field)!==null) $langObj->$field = Input::get($field);
+        $obj = Ads::find( (int)$id );
+        foreach (array_keys($obj->toArray()) as $field) {
+            if(Input::get($field)!==null) $obj->$field = Input::get($field);
         }
         if($filename){
-            $langObj->img = $filename;
+            $obj->img = $filename;
         }
 
-        $langObj->save();
-
-        return redirect('/admin/lang/index')->withSuccess('修改成功！');
+        $obj->save();
+        return redirect('/admin/ads/index')->withSuccess('修改成功！');
     }
 
 
@@ -176,9 +181,9 @@ class LangController extends Controller
      */
     public function destroy($id)
     {
-        $langInfo = Lang::find((int) $id);
-        if ($langInfo && $langInfo->id != 1) {
-            $langInfo->delete();
+        $info = Ads::find((int) $id);
+        if ($info && $info->id != 1) {
+            $info->delete();
         } else {
             return redirect()->back()->withErrors("删除失败");
         }
