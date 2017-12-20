@@ -41,6 +41,8 @@
                 </a>
                 <ul class="treeview-menu">
                     <li @if(Request::path()=='admin/translator/index') class="active" @endif><a href="/admin/translator/index"><i class="fa fa-circle-o"></i> 译者列表</a></li>
+                    <li @if(Request::path()=='admin/demand/zdy') class="active" @endif><a href="/admin/demand/zdy"><i class="fa fa-circle-o"></i> 自定义需求</a></li>
+
                     <li><a href="#"><i class="fa fa-circle-o"></i> 用户列表</a></li>
                     <li><a href="#"><i class="fa fa-circle-o"></i> 订单列表</a></li>
                 </ul>
